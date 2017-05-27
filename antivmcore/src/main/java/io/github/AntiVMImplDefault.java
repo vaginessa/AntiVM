@@ -39,15 +39,15 @@ import io.github.antivm.impl.AntiVMUninstalled;
 public class AntiVMImplDefault extends IAntiVM {
 
     @Override
-    public boolean antiVM(Context context) {
+    public boolean onVMDetected(Context context) {
         AntiVMUninstalled antiVMUninstalled = new AntiVMUninstalled();
-        if (antiVMUninstalled.antiVM(context)) {
+        if (antiVMUninstalled.onVMDetected(context)) {
             //DO Crash
             Process.killProcess(Process.myPid());
             return true;
         }
         AntiVMCloner antiVMCloner = new AntiVMCloner();
-        if (antiVMCloner.antiVM(context)) {
+        if (antiVMCloner.onVMDetected(context)) {
             //DO Crash
             Process.killProcess(Process.myPid());
             return true;

@@ -36,7 +36,7 @@ import io.github.vmBoy.Who;
 
 public class AntiVMCloner extends IAntiVM {
     @Override
-    public boolean antiVM(Context context) {
+    public boolean onVMDetected(Context context) {
         if (Who.map().equals("-1")) {
             return true;
         }

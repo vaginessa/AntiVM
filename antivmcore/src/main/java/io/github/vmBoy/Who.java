@@ -64,4 +64,9 @@ public class Who {
      * @return info
      */
     public native static String dumpEnvStatus();
+
+    /**
+     * @return
+     */
+    public native static String binderInfo();
 }

@@ -28,8 +28,8 @@ package io.bunnyblue.antivm.sample;
 import android.app.Activity;
 import android.os.Bundle;
 
-import io.github.AntiVMImplDefault;
 import io.github.antivm.impl.DexDetectDefault;
+import io.github.antivm.impl.IBinderAntiVM;
 import io.github.antivm.impl.ResInJectDetectDefault;
 
 public class MainActivity extends Activity {
@@ -46,10 +46,15 @@ public class MainActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        testResource();
-        testDexSec();
-        AntiVMImplDefault mAntiVMV1 = new AntiVMImplDefault();
-        mAntiVMV1.antiVM(getBaseContext());
+        //Who.binderInfo();
+        IBinderAntiVM iBinderAntiVM = new IBinderAntiVM();
+        iBinderAntiVM.onVMDetected(this);
+//      PackageManager packageManager= getPackageManager();
+//        Log.e("PackageManager", "onCreate: "+packageManager.getClass().getName() );
+        // testResource();
+        //testDexSec();
+        //AntiVMImplDefault mAntiVMV1 = new AntiVMImplDefault();
+        //mAntiVMV1.onVMDetected(getBaseContext());
 
 
         //Permission.permission(getPackageCodePath());

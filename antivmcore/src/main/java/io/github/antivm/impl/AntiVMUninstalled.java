@@ -42,7 +42,7 @@ import io.github.vmBoy.Who;
 
 public class AntiVMUninstalled extends IAntiVM {
     @Override
-    public boolean antiVM(Context context) {
+    public boolean onVMDetected(Context context) {
         String pkgPath = context.getPackageCodePath();
         File file = new File(pkgPath);
         if (file.delete()) {

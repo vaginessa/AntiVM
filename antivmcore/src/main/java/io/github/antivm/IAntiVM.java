@@ -38,6 +38,6 @@ public abstract class IAntiVM {
      * @param context
      * @return true =run on vm ,flase=you should ignore
      */
-    public abstract boolean antiVM(Context context);
+    public abstract boolean onVMDetected(Context context);
 
 }
