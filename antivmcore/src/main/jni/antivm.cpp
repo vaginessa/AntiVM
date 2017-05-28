@@ -1,5 +1,52 @@
 #include "antivm.h"
 
+#define  __STDC_LIMIT_MACROS
+#if defined(__x86_64__)
+#include <asm/unistd_32.h>
+#endif
+#if defined(__aarch64__)
+#define __ARCH_WANT_SYSCALL_NO_AT
+#include <asm-generic/unistd.h>
+#define __NR_fcntl64 __NR3264_fcntl
+#define __NR_statfs64 __NR3264_statfs
+#define __NR_fstatfs64 __NR3264_fstatfs
+/* WARNING: DO NOT EDIT, AUTO-GENERATED CODE - SEE TOP FOR INSTRUCTIONS */
+#define __NR_truncate64 __NR3264_truncate
+#define __NR_ftruncate64 __NR3264_ftruncate
+#define __NR_llseek __NR3264_lseek
+#define __NR_sendfile64 __NR3264_sendfile
+/* WARNING: DO NOT EDIT, AUTO-GENERATED CODE - SEE TOP FOR INSTRUCTIONS */
+#define __NR_fstatat64 __NR3264_fstatat
+#define __NR_fstat64 __NR3264_fstat
+#define __NR_mmap2 __NR3264_mmap
+#define __NR_fadvise64_64 __NR3264_fadvise64
+/* WARNING: DO NOT EDIT, AUTO-GENERATED CODE - SEE TOP FOR INSTRUCTIONS */
+#ifdef __NR3264_stat
+#define __NR_stat64 __NR3264_stat
+#define __NR_lstat64 __NR3264_lstat
+#endif
+#endif
+#if defined(__mips64)
+#define __ARCH_WANT_SYSCALL_NO_AT
+#include <asm-generic/unistd.h>
+#include <asm/unistd.h>
+
+#define __NR_stat64 __NR3264_stat
+#define __NR_lstat64 __NR3264_lstat
+#define __NR_fcntl64 __NR3264_fcntl
+#define __NR_statfs64 __NR3264_statfs
+#define __NR_fstatfs64 __NR3264_fstatfs
+/* WARNING: DO NOT EDIT, AUTO-GENERATED CODE - SEE TOP FOR INSTRUCTIONS */
+#define __NR_truncate64 __NR3264_truncate
+#define __NR_ftruncate64 __NR3264_ftruncate
+#define __NR_llseek __NR3264_lseek
+#define __NR_sendfile64 __NR3264_sendfile
+/* WARNING: DO NOT EDIT, AUTO-GENERATED CODE - SEE TOP FOR INSTRUCTIONS */
+#define __NR_fstatat64 __NR3264_fstatat
+#define __NR_fstat64 __NR3264_fstat
+#define __NR_mmap2 __NR3264_mmap
+#define __NR_fadvise64_64 __NR3264_fadvise64
+#endif
 void fixPath(char *path) {
     char *str2;
     str2 = path;
@@ -229,9 +276,9 @@ int rmdir(const char *pathname) {
 
 
 // int readlinkat(int dirfd, const char *pathname, char *buf, size_t bufsiz);
-int readlinkat(int dirfd, const char *pathname, char *buf, size_t bufsiz) {
+ssize_t readlinkat(int dirfd, const char *pathname, char *buf, size_t bufsiz) {
 
-    int ret = syscall(__NR_readlinkat, dirfd, pathname, buf, bufsiz);
+    ssize_t ret = syscall(__NR_readlinkat, dirfd, pathname, buf, bufsiz);
 
     return ret;
 }
